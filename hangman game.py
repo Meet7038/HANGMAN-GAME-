@@ -64,7 +64,7 @@ def check_guess():
         else:
             update_message(f"'{guess}' is not in the word. Try again!", "blue")
 
-# Reset the game
+# reset the game
 def reset_game():
     global word, guessed_word, guessed_letters, letter_positions, guess_history, chances
     word = random.choice(someWords)
