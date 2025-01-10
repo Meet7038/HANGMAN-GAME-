@@ -2,11 +2,11 @@ import random
 from tkinter import Tk, Label, Entry, Button, StringVar, Frame
 from collections import Counter, deque
 
-# Words list
+
 someWords = '''apple banana mango strawberry orange grape pineapple apricot lemon
  coconut watermelon cherry papaya berry peach lychee muskmelon fig'''.split()
 
-# Choose a random word
+# choose a random fruit
 word = random.choice(someWords)
 guessed_word = ['_'] * len(word)
 guessed_letters = set()
@@ -18,16 +18,16 @@ def disable_game():
     guess_entry.config(state="disabled")
     guess_button.config(state="disabled")
 
-# Update display for guessed word
+# updating the guessed letter
 def update_display():
     display_var.set(' '.join(guessed_word))
 
-# Update the message label
+
 def update_message(msg, color="black"):
     message_var.set(msg)
     message_label.config(fg=color)
 
-# Check the player's guess
+# check guesses
 def check_guess():
     global chances
     guess = guess_var.get().lower()
@@ -80,24 +80,24 @@ def reset_game():
     guess_entry.config(state="normal")
     guess_button.config(state="normal")
 
-# Create the UI
+# UI
 root = Tk()
 root.title("Hangman Game")
 root.geometry("500x450")
 root.configure(bg="#f5f5f5")
 
-# Title label
+
 Label(root, text="Hangman Game", font=("Comic Sans MS", 24, "bold"), fg="#333", bg="#f5f5f5").pack(pady=10)
 
-# Frame for guessed word display
+# frame for guessed word display
 guess_frame = Frame(root, bg="#f5f5f5")
 guess_frame.pack(pady=20)
-Label(guess_frame, text="Guess the word:", font=("Arial", 18), bg="#f5f5f5", fg="#555").grid(row=0, column=0, padx=10)
+Label(guess_frame, text="Guess the fruit:", font=("Arial", 18), bg="#f5f5f5", fg="#555").grid(row=0, column=0, padx=10)
 display_var = StringVar()
 display_var.set(' '.join(guessed_word))
 Label(guess_frame, textvariable=display_var, font=("Arial", 18), bg="#f5f5f5", fg="#0077cc").grid(row=0, column=1)
 
-# Input and submit button
+# input and submit button
 input_frame = Frame(root, bg="#f5f5f5")
 input_frame.pack(pady=20)
 Label(input_frame, text="Enter a letter:", font=("Arial", 14), bg="#f5f5f5", fg="#555").grid(row=0, column=0, padx=10)
@@ -107,22 +107,22 @@ guess_entry.grid(row=0, column=1, padx=10)
 guess_button = Button(input_frame, text="Guess", command=check_guess, font=("Arial", 14), bg="#0077cc", fg="white", relief="flat", cursor="hand2")
 guess_button.grid(row=0, column=2, padx=10)
 
-# Chances display
+# chances display
 chances_var = StringVar()
 chances_var.set(f"Chances Left: {chances}")
 Label(root, textvariable=chances_var, font=("Arial", 14), bg="#f5f5f5", fg="#555").pack(pady=10)
 
-# Message display
+# displaying message
 message_var = StringVar()
 message_var.set("Start guessing the word!")
 message_label = Label(root, textvariable=message_var, font=("Arial", 12), bg="#f5f5f5", fg="black")
 message_label.pack(pady=10)
 
-# Reset game button
+# reset game button
 reset_game_button = Button(root, text="Play Again", command=reset_game, font=("Arial", 14), bg="#28a745", fg="white", relief="flat", cursor="hand2")
 
-# Footer
+
 Label(root, text="Can you guess the word before you run out of chances?", font=("Arial", 12), bg="#f5f5f5", fg="#888").pack(side="bottom", pady=10)
 
-# Start the main loop
+# starting of program 
 root.mainloop()
